@@ -7,7 +7,7 @@ from pysurvival.utils import load_model
 st.set_page_config(layout="wide")
 
 
-@st.cache_data(show_spinner=False)
+@st.cache(show_spinner=False)
 def load_setting():
     settings = {
         'Age': {
@@ -64,7 +64,7 @@ def load_setting():
 settings, input_keys = load_setting()
 
 
-@st.cache_data(show_spinner=False)
+@st.cache(show_spinner=False)
 def get_model(name='DeepSurv'):
     model = load_model('{}.zip'.format(name))
     return model
