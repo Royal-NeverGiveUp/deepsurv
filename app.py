@@ -158,7 +158,7 @@ def plot_patients():
                 )
             ) for item in st.session_state['patients']
         ]
-    )
+    ).reset_index(drop=True)
     patients.index += 1
     st.dataframe(patients)
 
