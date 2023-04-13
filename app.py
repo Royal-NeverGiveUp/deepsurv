@@ -3,9 +3,9 @@ import numpy as np
 import pandas as pd
 import plotly.express as px
 from pysurvival.utils import load_model
+from st_aggrid import AgGrid, DataReturnMode, GridUpdateMode, GridOptionsBuilder
 
 st.set_page_config(layout="wide")
-
 
 @st.cache(show_spinner=False)
 def load_setting():
@@ -62,7 +62,6 @@ def load_setting():
 
 
 settings, input_keys = load_setting()
-
 
 @st.cache(show_spinner=False)
 def get_model(name='DeepSurv'):
@@ -160,7 +159,18 @@ def plot_patients():
         ]
     ).reset_index(drop=True)
     patients.index += 1
-    st.dataframe(patients)
+    #  st.dataframe(patients)
+
+    options_builder = GridOptionsBuilder.from_dataframe(patients)
+    options_builder.configure_default_column(groupable=True, value=True, enableRowGroup=True, aggFunc='sum',
+                                             editable=True, wrapText=True, autoHeight=True, min_column_width=80)
+    # options_builder.configure_column('col1', pinned='left')
+    # options_builder.configure_column('col2', pinned='left')
+    grid_options = options_builder.build()
+    print(len(patients))
+    all_data = patients
+    grid_return = AgGrid(patients, grid_options, theme='streamlit', height=300,
+                         fit_columns_on_grid_load=True)
 
 
 # @st.cache(show_spinner=True)
@@ -180,7 +190,7 @@ def predict():
                 input.append(settings[key]['values'].index(value) + 1)
     #  input = [input[0], input[8], input[5], input[2], input[7], input[6], input[1], input[3], input[4]]
 
-    print(np.array(input))
+    #  print(np.array(input))
     survival = deepsurv_model.predict_survival(np.array(input), t=None)
     data = {
         'survival': survival.flatten(),
