@@ -3,3 +3,4 @@ streamlit-aggrid==0.3.2
 pandas>1.0
 plotly==5.7.0
 pysurvival==0.1.2
+scikit-learn==1.2.0
