@@ -2,5 +2,5 @@ streamlit==1.21.0
 streamlit-aggrid==0.3.2
 pandas>1.0
 plotly==5.14.1
-pysurvival==0.2.1
+pysurvival==0.3.3
 scikit-learn==1.0.2
