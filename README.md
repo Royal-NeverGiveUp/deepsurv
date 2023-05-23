@@ -1,4 +1,4 @@
-# DeepSurv-based model for predicting survival of primary gastrointestinal lymphoma based on a surveillance, epidemiology, and end results analysis
+# Deep learning model for predicting the survival of patients with primary gastrointestinal lymphoma, based on the SEER database and a multi-center external validation cohort
 
 The DeepSurv model is available: deepsurv.zip
 
